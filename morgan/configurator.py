@@ -63,7 +63,7 @@ def generate_reqs(mode: str = ">="):
 
 def add_arguments(parser: argparse.ArgumentParser):
     """
-    Adds command line options specific to this script to an argument parser.
+    Adds script specific command line options to an argument parser.
     """
     parser.add_argument(
         "-e",
