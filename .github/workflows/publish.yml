@@ -23,14 +23,6 @@ jobs:
           python-version: "3.x"
       - name: Build sdist and wheel
         run: |
-          # A tag simulates a production release: rename the distribution to
-          # "morgen-tmp-2" so it lands in its own (Test)PyPI project, since the
-          # destination project is chosen by the package metadata "Name". Non-tag
-          # pushes keep the "morgen-tmp" name for the test-release project.
-          if [ "${{ github.ref_type }}" = "tag" ]; then
-            sed -i 's/^name = "morgen-tmp"$/name = "morgen-tmp-2"/' pyproject.toml
-            sed -i 's/_metadata.version("morgen-tmp")/_metadata.version("morgen-tmp-2")/' morgan/__init__.py
-          fi
           python -m pip install --upgrade pip build
           python -m build
       - name: Upload distributions
@@ -68,7 +60,7 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: pypi
-      url: https://test.pypi.org/project/morgen-tmp-2/
+      url: https://test.pypi.org/project/morgen-tmp/
     permissions:
       id-token: write  # required for PyPI trusted publishing (OIDC)
     steps:
