@@ -3,7 +3,7 @@ requires = ["hatchling>=1.10.0", "hatch-vcs"]
 build-backend = "hatchling.build"
 
 [project]
-name = "morgan"
+name = "morgen-tmp"
 dynamic = ["version"]
 description = "PyPI Mirror for Offline/Restricted Environments"
 authors = [
@@ -47,6 +47,11 @@ lint = [
     "mypy~=1.19.1",
     "importlib-metadata", # required by mypy for all Python versions
 ]
+
+[tool.hatch.build.targets.wheel]
+# The distribution is "morgen-tmp" but the import package is still "morgan",
+# so the package directory must be named explicitly.
+packages = ["morgan"]
 
 [tool.hatch.version]
 # Version is derived from the latest git tag, e.g. "v0.15.0" -> "0.15.0".
